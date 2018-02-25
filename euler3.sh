@@ -5,14 +5,15 @@
 
 
 #using bc.  is that cheating?  :)
+#get sqrt and convert to int
 sqrt() {
-echo -e "sqrt($1)\\nquit\\n" | bc -q -i | head -2 | tail -1
+float=$(echo "sqrt ( $1 )" | bc -l)
+echo ${float%%.*}
 }
 
 
 primecheck() {
 
-#convert sqrt to int cause we can't loop through float
 sqint=$(sqrt "$1")
 for i in $(eval echo "{2..$sqint}")
 do
