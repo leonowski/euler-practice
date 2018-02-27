@@ -11,20 +11,24 @@ float=$(echo "sqrt ( $1 )" | bc -l)
 echo ${float%%.*}
 }
 
-
 primecheck() {
 
 sqint=$(sqrt "$1")
 for i in $(eval echo "{2..$sqint}")
 do
-  if [[ $1%$i -eq 0 ]]; then
+  if [[ $1 -eq 2 || $1 -eq 3 ]]; then
   echo 0
-  break 2
-  else echo 1
-  break 2
+  break 1
+  elif [[ $1%$i -eq 0 ]]; then
+  echo 0
+  break 1
+  elif [[ $i -eq $sqint ]]; then
+  echo 1
   fi
 done
 }
+
+
 
 #lets make an array to get divisibles first
 array=()
@@ -47,5 +51,5 @@ for z in "${array[@]}";
     fi
   done
 
-#largest prime factor should be 2nd to last element in primearray
-printf '%s\n' "${primearray[-2]}"
+#largest prime factor should be last element in primearray
+printf '%s\n' "${primearray[-1]}"
