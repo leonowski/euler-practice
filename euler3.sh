@@ -18,10 +18,10 @@ for i in $(eval echo "{2..$sqint}")
 do
   if [[ $1 -eq 2 || $1 -eq 3 ]]; then
   echo 1
-  break 1
+  break 
   elif [[ $1%$i -eq 0 ]]; then
   echo 0
-  break 1
+  break 
   elif [[ $i -eq $sqint ]]; then
   echo 1
   fi
@@ -32,12 +32,17 @@ done
 #theres a better approach to this.  instead of making arrays, we just need to find the first prime going backwards through a loop.
 #I'll keep the old code commented below so I don't forget
 
+#another idea is to ignore numbers that aren't primes immediately so it doesnt get sent to primecheck
+
 for x in $(seq "$1" -1 1)
  do
-   if [[ $1%$x -eq 0 && $(primecheck $x) -eq 1 ]];
-   then
+   lastdigit="${x: -1}"
+   if [[ "$lastdigit" -eq "0" ]] || [[ "$lastdigit" -eq "2" ]] || [[ "$lastdigit" -eq "4" ]] || [[ "$lastdigit" -eq "6" ]] || [[ "$lastdigit" -eq "8" ]]; then
+   continue
+
+   elif [[ $1%$x -eq 0 && $(primecheck $x) -eq 1 ]]; then
    printf '%s\n' "$x"
-   break 2
+   break 
   fi
 done
 
