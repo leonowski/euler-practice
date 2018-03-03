@@ -25,7 +25,7 @@ x=$((x+1))
 done
 
 
-#largest prime factor should be last element in primearray
+#largest prime factor should be last element in factors array
 printf '%s\n' "${factors[-1]}"
 
 
