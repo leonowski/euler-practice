@@ -15,17 +15,17 @@ do
   mul=1
   for i in "${factors[@]}"; do
     mul=$(( mul * i ))
-    done
+  done
 #    echo $mul #uncomment to see progress of check done for break
     if [[ $mul -eq $1 ]]; then
-    break
-  fi
+    printf '%s\n' "${factors[-1]}"
+    exit
     fi
+  continue
+  fi
 x=$((x+1))
 done
 
 
-#largest prime factor should be last element in factors array
-printf '%s\n' "${factors[-1]}"
 
 
