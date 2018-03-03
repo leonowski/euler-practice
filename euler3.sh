@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 
-#lets make an array to get divisibles first by calculating factorials!
+#lets make an array to get divisibles first by calculating factors!
 
 factors=()
 current=$1
