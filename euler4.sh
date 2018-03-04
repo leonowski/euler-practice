@@ -2,16 +2,23 @@
 
 #largest palindrome product of 2 3-digit numbers
 
-#largest product of two 3-digit numbers 999x999
-x=$(( 999 * 999 ))
+palindrome() {
+        reverse=$(echo "$1" | rev)
+        echo "$reverse"
 
-#loop through backwards and find the palindrome number
-for i in $(seq $x -1 1)
-  do
-  reverse=$(echo "$i" | rev)
-  if [ $i -eq $reverse ];
-  then
-  printf '%s\n' "$i"
-  break 2
+}
+
+array=()
+#nested loop to multiply from 99 down
+for i in $(seq 99 -1 10); do
+    for h in $(seq 99 -1 10); do
+      prod=$((i*h))
+  if [ "$prod" -eq "$(palindrome "$prod")" ]; then
+  #echo products are $i and $h
+  #printf '%s\n' "$prod"
+  #exit
+  array+=("$prod")
   fi
+    done
 done
+printf '%s\n' "${array[@]}"
